@@ -16,6 +16,9 @@
 
 #define TARGET_BUFFER_SIZE 64
 
+extern volatile bool offlineBenchmarkMode;
+extern volatile uint32_t offlineKHs;
+
 void runMonitor(void *name);
 
 void runStratumWorker(void *name);

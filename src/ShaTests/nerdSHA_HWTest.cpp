@@ -1,4 +1,7 @@
 #ifdef HW_SHA256_TEST
+#include <Arduino.h>
+#include <string.h>
+
 
 #include <soc/soc.h>
 #include "ShaTests/nerdSHA256plus.h"
@@ -278,6 +281,19 @@ IRAM_ATTR void HwShaTest()
     nerd_sha256d(&ctx, s_test_buffer+64, hash);
   }
 #endif
+
+  const uint8_t expectedHash[32] = {
+    0x6f, 0xa4, 0x64, 0xb0, 0x07, 0xf2, 0xd5, 0x77,
+    0xed, 0xfa, 0x5d, 0xfe, 0x9d, 0xfc, 0x3f, 0x92,
+    0x09, 0xf3, 0x6d, 0x1a, 0x67, 0x11, 0xd3, 0x14,
+    0xea, 0x68, 0xcc, 0xdd, 0x03, 0x00, 0x00, 0x00
+  };
+
+  if (memcmp(hash, expectedHash, sizeof(expectedHash)) == 0) {
+    Serial.println("SOFTWARE SHA256D TEST: PASS");
+  } else {
+    Serial.println("SOFTWARE SHA256D TEST: FAIL");
+  }
 
 #if 0
   //nerdSha256 bake

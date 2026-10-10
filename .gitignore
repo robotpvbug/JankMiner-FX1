@@ -8,3 +8,10 @@ NerdMinerLog.txt
 bin/0x10000_firmware.bin
 logs
 boards/ESP32_wroom_guide.md
+
+# JankMiner local temporary files
+__pycache__/
+*.pyc
+src/.~lock.*
+*.backup
+*.pre_offline_backup
